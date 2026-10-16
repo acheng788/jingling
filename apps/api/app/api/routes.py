@@ -40,6 +40,8 @@ def list_decisions(limit: int = Query(default=50, ge=1, le=200)) -> list[dict]:
 @router.post("/decisions", response_model=DecisionRecord, status_code=201)
 def create_decision(payload: DecisionCreate) -> dict:
     question = payload.question.strip()
+    if not question:
+        raise HTTPException(status_code=422, detail="业务问题不能为空。")
     with connect() as db:
         knowledge = [dict(row) for row in db.execute("SELECT title,content FROM knowledge_items ORDER BY id DESC LIMIT 20").fetchall()]
     try:
