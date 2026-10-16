@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 
 type Knowledge = { id: number; title: string; content: string; source: string; created_at: string }
 type Decision = { id: number; question: string; recommendation: string; rationale: string; provider: string; status: string; outcome: string | null; created_at: string }
@@ -39,7 +39,7 @@ export default function App() {
   }
   useEffect(() => { void refresh() }, [])
 
-  async function submitKnowledge(event: React.FormEvent) {
+  async function submitKnowledge(event: FormEvent) {
     event.preventDefault(); setBusy(true); setNotice('')
     try {
       await api('/api/knowledge', { method: 'POST', body: JSON.stringify({ title, content, source: 'manual' }) })
