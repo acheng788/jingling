@@ -46,7 +46,7 @@ export default function App() {
       setTitle(''); setContent(''); setNotice('知识条目已保存。'); await refresh()
     } catch (err) { setError(err instanceof Error ? err.message : '保存失败。') } finally { setBusy(false) }
   }
-  async function submitDecision(event: React.FormEvent) {
+  async function submitDecision(event: FormEvent) {
     event.preventDefault(); setBusy(true); setNotice('')
     try {
       await api('/api/decisions', { method: 'POST', body: JSON.stringify({ question }) })
