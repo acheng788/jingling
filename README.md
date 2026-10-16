@@ -42,9 +42,20 @@ API 文档： http://127.0.0.1:8000/docs
 
 ## 验证
 
+分别在仓库根目录运行：
+
 ```bash
-cd apps/api && pytest -q
-cd apps/web && npm run typecheck && npm run build
+cd apps/api
+pytest -q
+```
+
+另开终端或返回仓库根目录运行：
+
+```bash
+cd apps/web
+npm install
+npm run typecheck
+npm run build
 ```
 
 ## 模型配置
