@@ -57,3 +57,7 @@ def test_feedback_missing_decision_returns_404(client):
 def test_invalid_knowledge_payload_returns_422(client):
     response = client.post("/api/knowledge", json={"title": "", "content": ""})
     assert response.status_code == 422
+
+def test_whitespace_only_decision_question_returns_422(client):
+    response = client.post("/api/decisions", json={"question": "     "})
+    assert response.status_code == 422
